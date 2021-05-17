@@ -448,7 +448,7 @@ def check(experience , rate , answer , following , user):
             average_rate = average_rate + i.rate
 
         x = datetime.now()
-
+    
         if experience !="":
             date_time_str = str(experience + ' 08:15:27.243860')
             practicing_since = datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
@@ -728,3 +728,10 @@ def unfollow_view(request , id):
     return redirect('/advo_search')
 
     
+
+def chatview(request):
+    return render(request , 'chat.html')
+
+
+def activate_chat(request , id):
+    return redirect('/chat/{}'.format(id))

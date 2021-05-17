@@ -71,12 +71,15 @@
                     </div>
                 </center>
                 {% if is_follow %}
-                                                            <p class="text-center float-right" style="font-size: 5;"><a class="btn btn-outline-primary  " href="/unfollow/{{advocate.id}}">unfollow</a> </p>
+                <p class="text-center float-right" style="font-size: 5;"><a class="btn btn-outline-primary  " href="/unfollow/{{advocate.id}}">unfollow</a> </p>
 
                 {% else %}
-                                                        <p class="text-center float-right" style="font-size: 5;"><a class="btn btn-outline-primary  " href="/follow/{{advocate.id}}">follow</a> </p>
+                <p class="text-center float-right" style="font-size: 5;"><a class="btn btn-outline-primary  " href="/follow/{{advocate.id}}">follow</a> </p>
 
                 {% endif %}
+
+
+                <p class="text-center float-left" style="font-size: 5;"><a class="btn btn-outline-danger  " href="/activate-chat/{{advocate.id}}">Activate Chat</a> </p>
 
             </div>
 
@@ -110,7 +113,7 @@
                             <p class="text-center">Rating</p>
                             <p class="text-center">{{rate}}</p>
                         </div>
-                         <div class="col border">
+                        <div class="col border">
                             <p class="text-center">Followers</p>
                             <p class="text-center">{{followers}}</p>
                         </div>
