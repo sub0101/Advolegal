@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block body %}
+{% block contactcss %}
+  <link rel="stylesheet" href="{% static '/css/contact.css' %}">
+
+{% endblock contactcss %}
+    <!-- Image card -->
+    {% if messages %}
+    {{message}}
+    <!-- <ul>
+        
+        <li>
+
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×</button>
+                <p>  {{message}} </p>
+            </div>
+        </li>
+    
+    </ul> -->
+
+    {% endif %}
+<div class="imgcard">
+    <div class="card bg-dark text-white">
+        <img src=  "{% static '/images/tele1.jpeg' %} " class="card-img w-100 mh-100" alt="...">
+      
+    </div>
+</div>
+<title>Contact Us</title>
+<!-- Address -->
+<div class="addcard">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="..." class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Ready for offers and cooperation</h5>
+                <h5>Address:</h5>
+                <p> Rohini East, New Delhi<br>
+                    Email: contact@advolegal.com<br>
+                    WhatsApp: 9988776655</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- contact form -->
+
+    <div class=" container mb-5 ">
+        <div class="card border-secondary float-right w-100" style="max-width: 20rem;">
+            <form action="" method="POST">
+                <div class="card-header">Contact Us</div>
+            <div class="card-body text-secondary">
+            {% csrf_token %}
+
+                    <div class="form-group">
+                        <input type="name" class="form-control" id="name" placeholder="Full Name" name = 'name' required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" placeholder="Email ID" name = 'email' required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="mobile"
+                            placeholder="Phone Number" name  = 'mobile' required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="query" rows="3"
+                            placeholder="Your Message" name = 'query' required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" style="font-family: cursive;">Send</button>
+       
+            </div>
+            </form>
+            
+        </div>
+    </div>
+
+
+{% block bottom %}
+  
+{% endblock bottom %}
+{% endblock body %}
+
