@@ -8,6 +8,7 @@ import uuid
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
+from django.db.models.base import ModelState
 from django.utils.translation import deactivate, ugettext_lazy as _
 from .manager import UserManager
 from django.utils.timezone import now
@@ -28,8 +29,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     image = models.ImageField(upload_to='userimage/', blank=True , null = True , default  = "user.png" )
     email = models.EmailField(_('email address'), unique=True)
     name = models.CharField(_('name'), max_length=30, blank=True)
-    city = models.CharField(max_length = 30  , blank = True)
-    mobile=  models.CharField(max_length=10 ,blank = True , unique=True , null=True)
+    city = models.CharField(max_length = 30  , blank = True , null=True)
+    # mobile=  models.CharField(max_length=10 ,blank = True , unique=True , null=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
@@ -142,3 +143,10 @@ class Follower(models.Model):
     following = models.ForeignKey("User" , on_delete=models.CASCADE, related_name="following")
 
     date =models.DateTimeField(auto_now_add=True)
+
+
+class ActiveChat(models.Model):
+    chat_user = models.ForeignKey("User" ,on_delete=models.CASCADE , related_name="chat_user" )
+
+    chat_user2 = models.ForeignKey('User' , on_delete=models.CASCADE , related_name="chat_user2")
+    date = models.DateField(auto_now_add=True)

@@ -15,7 +15,7 @@ admin.site.register(Rating)
 admin.site.register(InstantAdvice)
 admin.site.register(ContactUs)
 admin.site.register(Follower)
-
+admin.site.register(ActiveChat)
 
 class InstantAdviceAdmin(admin.ModelAdmin):
     readonly_fields = {'transaction_id'}

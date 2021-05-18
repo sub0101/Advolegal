@@ -1,7 +1,7 @@
 <html lang="en">
 
 <head>
-    {% load static %}
+    {% load static %} {% load socialaccount %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
@@ -74,9 +74,13 @@
                     </button>
                 </center>
 
-                <div class="status text-danger text-right"></div>
+                <div class="status text-danger text-right"> <span class=""> If not Adocate </span>
+                    <a href="{% provider_login_url 'google' %}">
+                        <p href="" class="btn btn-block btn-outline-info"> <i class="fab fa-google"></i>   Login via Google</p>
+                    </a>
+                </div>
             </form>
-            <span> Do not have an account?</span> <span> <a href="main_signup" class="text-dark  font-weight-bold"> create
+            <span> Do not have an account?</span> <span> <a href="main_signup" class=" "  style="color: blue;"> create
                     account.!</a></span>
         </div>
 

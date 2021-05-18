@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block body %} {% block usersignupcss %}
+{% extends 'base.html' %} {% load static %} {% block body %} {% block usersignupcss %} {% load socialaccount %}
 <style>
     .back {
         position: fixed;
@@ -8,7 +8,6 @@
         left: 0;
         right: 0;
         z-index: -1;
-        /* filter: blur(1.5px); */
     }
     
     .con-signup {
@@ -16,8 +15,8 @@
     }
 </style>
 <title>User Signup</title>
-<link rel="stylesheet" href="{% static '/css/forms.css' %}"> 
-{% endblock usersignupcss %}
+
+<link rel="stylesheet" href="{% static '/css/forms.css' %}"> {% endblock usersignupcss %}
 
 <div class="container con-signup mt-2">
     <div class="heading text-center font-weight-bold text-success mb-2 ml-3">
@@ -31,59 +30,45 @@
         <div class="row mt-4 ">
             <div class="col">
 
-                <!-- <input type="text" class="form-control w-100  signup_input" id="name" name="name" autocomplete="off" required> -->
                 {{form.name}}
-                <!-- <label class="" for="name" id="name_label"> Name</label> -->
             </div>
         </div>
         <div class="row mt-4 ">
             <div class="col">
-                <!-- <input type="email" class="form-control w-100 signup_input" id="email" name="email" autocomplete="off" required> -->
                 {{ form.email }}
-                <!-- <label class="" id="email_label" for="email"> Email</label> -->
             </div>
 
         </div>
+
         <div class="row mt-4 ">
             <div class="col">
-                {{form.mobile}}
-
-                <!-- <label class="" id="mobile_label" for="mobile"> Mobile</label> -->
-
-            </div>
-        </div>
-        <div class="row mt-4 ">
-            <div class="col">
-                <!-- <input type="text" class="form-control w-100 signup_input" id="city"> -->
                 {{form.city}}
-                <!-- <label class="" id="city_label" for="city"> City</label> -->
             </div>
         </div>
         <div class="row mt-4 ">
             <div class="col">
-                <!-- <input type="password" class="form-control w-100 signup_input" id="password1" autocomplete="off"> -->
                 {{form.password1}}
-                <!-- <label class="" id="password1_label" for="password1"> Password</label> -->
             </div>
 
         </div>
         <div class="row mt-4 ">
             <div class="col">
-                <!-- <input type="password" class="form-control w-100 signup_input" id="password2" autocomplete="off"> -->
                 {{form.password2}}
 
-                <!-- <label class="" id="password2_label" for="password2"> Confrim Password</label> -->
             </div>
         </div>
 
-        <!-- <a class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" -->
         <button type="submit" class="btn   btn-outline-dark w-100 mt-4"> Sign in</button>
+        <center>OR</center>
+        <a href="{% provider_login_url 'google' %}">
+            <p href="" class="btn btn-block btn-outline-info"> <i class="fab fa-google"></i>   Login via Google</p>
+        </a>
         <div class="status text-danger text-right"></div>
-
         <p class="text-danger bg-info">
             {{form.errors}}
         </p>
     </form>
+
     {{form2.errors}}
     <div class="container con-signup">
         <span class="text-white"> Already have a account? </span> <span> <a href="/login"

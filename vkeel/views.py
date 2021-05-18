@@ -1,6 +1,7 @@
 
 from datetime import datetime
 from os import error
+from django.db.models import Q
 from django.contrib import messages
 from django.core.checks.messages import Error
 from django.db.models import query
@@ -345,10 +346,11 @@ def edit_userprofile(request , id):
     userform = edit_user_form(data=request.POST , files=request.FILES or None, instance = user)
     profile_form = UserProfileform(data=request.POST , files=request.FILES , instance = profile)
     if request.method == 'POST':
-        print(request.FILES.get('image'))
+        print('inside0')
         if profile_form.is_valid() and userform.is_valid():
+            print('inside1')
             profile_form.save()         
-               
+            print('inside')
             userform.save()
             return redirect('/edit_userprofile/{}'.format(profile.id))
     else:    
@@ -511,9 +513,9 @@ def advoprofile(request , id):
   
     
     value = check(profile.practicing_since,  Rating.objects.filter(user = user) , Answer.objects.filter(user  = user) , get_object_or_404(User,email = user.email) , request.user)
-       
+    is_active =ActiveChat.objects.filter(chat_user =user).count
     return render(request , 'advocateprofile.html' ,{'rate':value['rate'] ,'experience':value['experience'], 'advocate':user , 'answer':value['answer'],
-              'city' :service_cities , 'law':area_of_law , 'courts':visiting_courts ,'education':education_profile , 'followers':value['follower'] , 'is_follow':value['is_follow']})
+              'city' :service_cities , 'law':area_of_law , 'courts':visiting_courts ,'education':education_profile , 'followers':value['follower'] , 'is_follow':value['is_follow'] , 'is_active':is_active})
 
 def search_city(users , city):
     users = AdvocateProfile.objects.all()
@@ -723,15 +725,20 @@ def follow_view(request , id):
 
 
 def unfollow_view(request , id):
-    # Follower.objects.delete(following = id , follower = get_object_or_404(User  , request.user.id))
     Follower.objects.filter(following = get_object_or_404(User , id = id ), follower = request.user).delete()
     return redirect('/advo_search')
 
     
 
 def chatview(request):
-    return render(request , 'chat.html')
+  
+    users = ActiveChat.objects.filter(chat_user2 = request.user)
+   
+    return render(request , 'chat.html' , {'users':users})
 
 
 def activate_chat(request , id):
-    return redirect('/chat/{}'.format(id))
+    count =  len(ActiveChat.objects.filter( Q(chat_user = User.objects.get(id = id)) & Q(chat_user2  = request.user)))
+    if count==0:
+        ActiveChat.objects.create(chat_user = User.objects.get(id = id) , chat_user2 = request.user)
+    return redirect('/chat_users')

@@ -19,32 +19,30 @@
     <link rel="icon" href=" {% static 'images/logo4.jpeg' %}" type="image/x-icon">
     <style>
         body {
-            background: #ADA996;
-            /* fallback for old browsers */
+            /* background: #ADA996;
             background: -webkit-linear-gradient(to left, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);
-            /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to left, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);
-            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
+            background: linear-gradient(to left, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); */
+            background-color: rgb(25, 39, 52);
+            ;
+            padding: 10px;
         }
-
+        
         .back {
-            /* background: url("https://mdbootstrap.com/img/Photos/Others/img (42).jpg"); */
-            background-size: cover;
+            /* background-size: cover;
             background-position: center;
-            /* filter: blur(8px); */
-            /* -webkit-filter: blur(8px); */
+         
             height: 100%;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: cover;
+            background-size: cover; */
+            background-color: rgb(25, 39, 52);
+            ;
         }
-
+        
         .navbar * {
             color: rgb(9, 49, 228);
         }
-
+        
         .form-control1 {
             background: transparent;
             border: none;
@@ -52,7 +50,7 @@
             border-radius: 0;
             width: 100%;
         }
-
+        
         .circular--square-base {
             border-radius: 50%;
             margin: auto;
@@ -89,18 +87,15 @@
 
 
                             <div class="container-fluid mt-5 ">
-                                <input type="text" name="title" id='name' class="form-control1" , placeholder="Title"
-                                    required="True">
+                                <input type="text" name="title" id='name' class="form-control1" , placeholder="Title" required="True">
                             </div>
                             <div class="container-fluid mt-5">
-                                <textarea class="form-control , w-100" name="description" id='description' id=""
-                                    rows="5" placeholder="Description" required="True"></textarea>
+                                <textarea class="form-control , w-100" name="description" id='description' id="" rows="5" placeholder="Description" required="True"></textarea>
                             </div>
 
                             <div class="container mt-5">
 
-                                <select name="area_of_law" id="area_of_law" class="form-control1" , value='Area of Law'
-                                    required="True">4
+                                <select name="area_of_law" id="area_of_law" class="form-control1" , value='Area of Law' required="True">4
                                     <option>----------Area Of Law-----------</option>
 
 
@@ -130,8 +125,7 @@
     <nav class="navbar navbar-expand-lg  text-danger navbar-dark bg-dark">
         <img class="circular--square-base p-2  " src="{% static '/images/logo4.jpeg' %}" alt="">
         <a class="navbar-brand" href="/index">AdvoLegal</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -175,13 +169,11 @@
                 <a href="/logout"> <button class="btn btn-outline-danger">LogOut</button> </a>
             </li>
             {% if user.is_advocate %}
-            <a href="/edit_profile/{{user.profile.id}}/"> <img class="circular--square-base border "
-                    src="{{user.image.url}} " alt=""> </a>
+            <a href="/edit_profile/{{user.profile.id}}/"> <img class="circular--square-base border " src="{{user.image.url}} " alt=""> </a>
 
             {% else %}
 
-            <a href="/edit_userprofile/{{user.userprofile.id}}/"> <img class="circular--square-base border "
-                    src=" {{user.image.url}} " alt=""> </a>
+            <a href="/edit_userprofile/{{user.userprofile.id}}/"> <img class="circular--square-base border " src=" {{user.image.url}} " alt=""> </a>
 
 
             {% endif %} {% else %}
@@ -216,14 +208,15 @@
     {% endif %} {% block body %} {% endblock body %}
 
 
-   
+
 
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <script src=" {% static '/js/base.js' %} "> </script>
+    <script src=" {% static '/js/base.js' %} ">
+    </script>
 
 
 </body>
