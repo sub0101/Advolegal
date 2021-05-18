@@ -1,5 +1,4 @@
-{% extends "base.html" %} {% load static %} {% block body %} {% block quetions %}
-
+{% extends "base.html" %} {% load static %} {% block body %} {% block quetions %} {% load social_share %}
 <style>
     @media screen and (max-width: 600px) {
         .text {
@@ -38,7 +37,7 @@
             <div class="col-lg-3  p-5 mt-2 col-md-12">
                 <form action="" method="POST">
                     {% csrf_token %}
-                    <div class="container overflow-hidden  border bg-white mw-100  ">
+                    <div class="container overflow-hidden  border  mw-100  " style="background-color: rgb(201, 209, 199);">
 
                         <h4 class="text-danger"> Filter Option</h4>
 
@@ -102,18 +101,18 @@
                     {% for i in advocate %}
 
                     <div class="container mt-5  bg-white p-0 mb-5" style="box-shadow: 2px 40px 50px rgb(39, 38, 38); z-index: 100;">
-                        <div class="border border-danger" style="background-color: rgba(212, 209, 205, 0.788); color:#d80819">
+                        <div class="border border-danger" style="background-color:rgb(218, 208, 208); color:#d80819">
                             <span class="d-inline-block">
                                 <h4 class="font-weight-bold text " >Advocate {{i.name}}</h4>
                                 <p>{{abc}} </p>
                             <p class="text text-dark"> {{i.profile.address}} </p>
                             </span>
 
-                            <a href="advocate/advocate_profile/{{i.id}} " class="view-profile" style="right: 0%; float: right;">View Profile</a>
+                            <a href="advocate/advocate_profile/{{i.id}} " class="view-profile btn btn-outline-primary mt-1" style="right: 0%; float: right;">View Profile</a>
 
                         </div>
                         <div class="detail border container">
-                            <div class="row">
+                            <div class="row " style="background-color :rgb(25,39,52);color: rgb(255, 255, 255);">
 
                                 <div class="col ">
 
@@ -136,7 +135,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class=" container overflow-hidden">
+                        <div class=" container overflow-hidden" style="background-color:rgb(25,39,52)">
                             <div class="row mt-3">
                                 <div class="col-sm-12 col-lg-3 img-center">
                                     <p class="text-center">
@@ -166,13 +165,15 @@
                                 </div>
                             </div>
 
-
+                            {% if user.is_authenticated %}
+                            <p class="text-center"><a class="btn btn-outline-danger mt-3 mb-3 " href="/advice/{{i.id}}">Instant Advice</a> </p>
+                            {% else %}
+                            <p class="text-center"><a class="btn btn-outline-danger mt-3 mb-3 " href="main_signup">Instant Advice</a> </p>
+                            {% endif %}
+                            <div style="color:red">
+                                {% post_to_twitter "New Song: {{object.title}}. Check it out!" "https://127.0.0.1:8000/advocate_profile`{{i.user.id}}`" "Post to Facebok" %}
+                            </div>
                         </div>
-                        {% if user.is_authenticated %}
-                        <p class="text-center"><a class="btn btn-outline-danger mt-5 mb-3 " href="/advice/{{i.id}}">Instant Advice</a> </p>
-                        {% else %}
-                        <p class="text-center"><a class="btn btn-outline-danger mt-5 mb-3 " href="main_signup">Instant Advice</a> </p>
-                        {% endif %}
 
 
                     </div>

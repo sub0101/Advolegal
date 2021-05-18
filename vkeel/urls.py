@@ -28,8 +28,10 @@ urlpatterns = [
     path('handlerequest/' , handlerequest , name = "handlerequest"),
     path('advice/<int:id>/',instantadvice, name='instantadvice'),
     path('follow/<int:id>' , follow_view , name = 'follow'),
-    path('unfollow/<int:id>' , unfollow_view , name = 'unfollow')
-   
+    path('unfollow/<int:id>' , unfollow_view , name = 'unfollow'),
+    path('chat_users/' , chatview ,name = 'chat' ),
+    path('activate-chat/<int:id>' , activate_chat , name= 'activate_chat'),
+    path('accounts/', include('allauth.urls')),
   
     
 ]
