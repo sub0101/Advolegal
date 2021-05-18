@@ -8,7 +8,6 @@ urlpatterns = [
     path('advocate/advocate_profile/<int:id>/' , advoprofile , name = 'advoprofile'),
     path('index' , index , name = 'index' ),
     path('contact' , contact , name = 'contact'),
-    
     path('about' , about , name = 'about'),
     path('ask_quetion' , quetion_view , name = 'quetions'),
     path('questions' , quetion_view , name = 'quetions' ),
