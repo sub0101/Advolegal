@@ -310,7 +310,7 @@ def contact(request):
       
         # send_email(subject ,message , email )
         return redirect('/contact')
-    return render(request, 'contact.html')
+    return render(request, 'contact2.html')
 
 
 
