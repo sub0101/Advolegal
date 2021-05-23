@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 from django.contrib.messages import constants as messages
 import os
 
+import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -111,11 +112,7 @@ DATABASES = {
 #         'PORT': '',
 #     }
 # }
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+DATABASES = { 'default' : dj_database_url.config()}
 
 
 

@@ -6,6 +6,7 @@ chardet==4.0.0
 crypto==1.4.1
 cryptography==3.4.7
 defusedxml==0.7.1
+dj-database-url==0.5.0
 Django==3.1.7
 django-allauth==0.44.0
 django-social-share==2.2.1
