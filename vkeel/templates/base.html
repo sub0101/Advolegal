@@ -122,7 +122,7 @@
     <!-- Navbar -->
     <div class="back"></div>
 
-    <nav class="navbar navbar-expand-lg  text-danger navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg  text-danger navbar-dark bg-dark ">
         <img class="circular--square-base p-2  " src="{% static '/images/logo4.jpeg' %}" alt="">
         <a class="navbar-brand" href="/index">AdvoLegal</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -194,7 +194,7 @@
 
     {% if messages %}
     <ul>
-        {% for message in messages %}
+        <!-- {% for message in messages %}
         <li>
             <div class="alert alert-info" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -202,7 +202,7 @@
                 <p> <b>Hey.! {{user.name}} </b> {{message}} </p>
             </div>
         </li>
-        {% endfor %}
+        {% endfor %} -->
     </ul>
 
     {% endif %} {% block body %} {% endblock body %}

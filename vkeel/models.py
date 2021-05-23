@@ -147,6 +147,6 @@ class Follower(models.Model):
 
 class ActiveChat(models.Model):
     chat_user = models.ForeignKey("User" ,on_delete=models.CASCADE , related_name="chat_user" )
-
+    
     chat_user2 = models.ForeignKey('User' , on_delete=models.CASCADE , related_name="chat_user2")
     date = models.DateField(auto_now_add=True)

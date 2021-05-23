@@ -254,9 +254,7 @@ def edit_personal_profile_view(request, id):
 def advocate_signupview(request):
 
     form = AdvocateSignupForm(request.POST)
-    # profile_form = ProfileForm(request.POST, instance=request.user.profile)
-    # case_form = CaseForm(request.POST , instance = request.user.case_profile)
-    # educational_profile= EducationForm(req)
+  
     subject = 'Welcome To Advolegal'
     user = None
     if request.method == "POST":
@@ -310,7 +308,7 @@ def contact(request):
       
         # send_email(subject ,message , email )
         return redirect('/contact')
-    return render(request, 'contact.html')
+    return render(request, 'contact2.html')
 
 
 
@@ -513,7 +511,12 @@ def advoprofile(request , id):
   
     
     value = check(profile.practicing_since,  Rating.objects.filter(user = user) , Answer.objects.filter(user  = user) , get_object_or_404(User,email = user.email) , request.user)
-    is_active =ActiveChat.objects.filter(chat_user =user).count
+    if request.user.is_user:
+        is_active =  len(ActiveChat.objects.filter( Q(chat_user2 = request.user) & Q(chat_user  = user)))
+    else:
+        is_active =  len(ActiveChat.objects.filter( Q(chat_user2 = user) & Q(chat_user  = request.user)))
+
+
     return render(request , 'advocateprofile.html' ,{'rate':value['rate'] ,'experience':value['experience'], 'advocate':user , 'answer':value['answer'],
               'city' :service_cities , 'law':area_of_law , 'courts':visiting_courts ,'education':education_profile , 'followers':value['follower'] , 'is_follow':value['is_follow'] , 'is_active':is_active})
 
@@ -731,14 +734,34 @@ def unfollow_view(request , id):
     
 
 def chatview(request):
-  
-    users = ActiveChat.objects.filter(chat_user2 = request.user)
+    if request.user.is_user:
+        users = ActiveChat.objects.filter(chat_user2 = request.user)
+    else:
+        users = ActiveChat.objects.filter(chat_user = request.user)
+
    
     return render(request , 'chat.html' , {'users':users})
 
-
 def activate_chat(request , id):
-    count =  len(ActiveChat.objects.filter( Q(chat_user = User.objects.get(id = id)) & Q(chat_user2  = request.user)))
-    if count==0:
-        ActiveChat.objects.create(chat_user = User.objects.get(id = id) , chat_user2 = request.user)
+    if request.method == 'POST':
+        if request.user.is_advocate:
+            count =  len(ActiveChat.objects.filter( Q(chat_user2 = User.objects.get(id = id)) & Q(chat_user  = request.user)))
+        else:
+            count =  len(ActiveChat.objects.filter( Q(chat_user = User.objects.get(id = id)) & Q(chat_user2  = request.user)))
+        if count==0:
+            ActiveChat.objects.create(chat_user = User.objects.get(id = id) , chat_user2 = request.user)
     return redirect('/chat_users')
+
+
+
+def deactivate_chat(request , id):
+    if request.method == "POST":
+        if request.user.is_advocate:
+            count =  len(ActiveChat.objects.filter( Q(chat_user2 = User.objects.get(id = id)) & Q(chat_user  = request.user)))
+        else:
+            count =  len(ActiveChat.objects.filter( Q(chat_user = User.objects.get(id = id)) & Q(chat_user2  = request.user)))
+        if count!=0:
+            ActiveChat.objects.filter(Q(chat_user = User.objects.get(id = id)) & Q(chat_user2  = request.user)).delete()
+            ActiveChat.objects.filter(Q(chat_user2 = User.objects.get(id = id)) & Q(chat_user  = request.user)).delete()
+
+    return redirect('/advocate/advocate_profile/{}'.format(User.objects.get(id = id).id))

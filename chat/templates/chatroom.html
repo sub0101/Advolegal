@@ -1,20 +1,20 @@
 <!------ Include the above in your HEAD tag ---------->
-{% load static %}
+{% include "base.html" %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>ChatRoom</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="{% static '/my.css' %} " />
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet " href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css " />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <!-- <link rel="stylesheet " href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css " />
     <link rel="stylesheet " href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css " />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js "></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js "></script> -->
 
     <style>
         .chat_my {
@@ -39,69 +39,32 @@
                     </div>
                 </div>
                 <div class="inbox_chat scroll ">
+                    {% if request.user.is_user %} {% for i in active_chat %}
                     <div class="chat_list active_chat ">
+
                         <div class="chat_people ">
-                            <div class="chat_img "> <img src="https://ptetutorials.com/images/user-profile.png " alt="sunil "> </div>
+                            <div class="chat_img "> <img src=" {{i.chat_user.image.url}}" alt=" {{i.chat_user.name}}"> </div>
                             <div class="chat_ib ">
-                                <h5>Sunil Rajput <span class="chat_date ">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
+                                <h5> <a href="/chat/{{i.chat_user.id}}">{{i.chat_user.name}}</a><span class="chat_date"></span></h5>
+                                <p></p>
                             </div>
                         </div>
+
                     </div>
-                    <div class="chat_list ">
+                    {% endfor %} {% endif %} {% if request.user.is_advocate %} {% for k in active_chat %}
+                    <div class="chat_list active_chat ">
+
                         <div class="chat_people ">
-                            <div class="chat_img "> <img src="https://ptetutorials.com/images/user-profile.png " alt="sunil "> </div>
+                            <div class="chat_img "> <img src=" {{k.chat_user2.image.url}}" alt=" {{k.chat_user2.name}}"> </div>
                             <div class="chat_ib ">
-                                <h5>Sunil Rajput <span class="chat_date ">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
+                                <h5> <a href="/chat/{{k.chat_user2.id}}">{{k.chat_user2.name}}</a><span class="chat_date"></span></h5>
+                                <p></p>
                             </div>
                         </div>
-                    </div>
-                    <div class="chat_list ">
-                        <div class="chat_people ">
-                            <div class="chat_img "> <img src="https://ptetutorials.com/images/user-profile.png " alt="sunil "> </div>
-                            <div class="chat_ib ">
-                                <h5>Sunil Rajput <span class="chat_date ">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list ">
-                        <div class="chat_people ">
-                            <div class="chat_img "> <img src="https://ptetutorials.com/images/user-profile.png " alt="sunil "> </div>
-                            <div class="chat_ib ">
-                                <h5>Sunil Rajput <span class="chat_date ">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list ">
-                        <div class="chat_people ">
-                            <div class="chat_img "> <img src="https://ptetutorials.com/images/user-profile.png " alt="sunil "> </div>
-                            <div class="chat_ib ">
-                                <h5>Sunil Rajput <span class="chat_date ">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list ">
-                        <div class="chat_people ">
-                            <div class="chat_img "> <img src="https://ptetutorials.com/images/user-profile.png " alt="sunil "> </div>
-                            <div class="chat_ib ">
-                                <h5>Sunil Rajput <span class="chat_date ">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list ">
-                        <div class="chat_people ">
-                            <div class="chat_img "> <img src="https://ptetutorials.com/images/user-profile.png " alt="sunil "> </div>
-                            <div class="chat_ib ">
-                                <h5>Sunil Rajput <span class="chat_date ">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
+
+                    </div> {% endfor %}{% endif %}
+
+
                 </div>
             </div>
             <div class="mesgs">

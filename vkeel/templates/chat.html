@@ -1,36 +1,4 @@
-<!--  {% block body %}
-<div class="row p-5">
-    {% for i in users %}
-    <div class=" 
-      col-12
-    
-      col-lg-2 col-md-4
-      position-relative
-      col-sm-6
-      p-lg-3 p-sm-4
-    " style="overflow: hidden">
-        <div class="container position-relative border p-0">
-            <div class="container-fluid " style="background-color: rgb(218, 153, 238);">
-                <center>
-                    <img src="{{i.chat_user.image.url}}" class="" alt="" style="border-radius: 50%; top: 10%; width: 150px; height: 150px" />
-                </center>
-            </div>
-
-            <div class=" " style="background-color: rgb(135, 229, 241);">
-                <h4 class="font-weight-bold text-center mt-1">{{i.chat_user.name}}</h4>
-
-                <p class="text-center">
-                    <i class="fa fa-map-marker text-primary  text-center"></i> {{i.chat_user.city}}
-                </p>
-            </div>
-            <hr>
-
-        </div>
-    </div>
-    {% endfor %}
-</div> {% endblock body %} -->
-
-{% include "base.html" %}
+ {% include "base.html" %}
 <!DOCTYPE html>
 <html>
 
@@ -79,22 +47,58 @@
 <body class="p-4">
     <h2 style="text-align:center">User Profile Card</h2>
 
-    {% for i in users %}
-    <div class="card float-left">
-        <img src="{{i.chat_user.image.url}}" alt="John" style="width:100%">
-        <h1>{{i.chat_user.name}}</h1>
-        <p class="title">Advocate</p>
-        <p class="text-bold">{{i.chat_user.city}}</p>
-        <div style="margin: 24px 0;">
-            <a href="#"><i class="fa fa-dribbble"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-facebook"></i></a>
+    {% if request.user.is_user %}
+    <div class="row">
+        {% for i in users %}
+        <div class=" col-lg-3 col-xl-3 col-sm-6 col-md-4 col-xs-6 mt-3">
+            <div class="card ">
+                <img src="{{i.chat_user.image.url}}" alt="John" style="width:100%">
+                <h1>{{i.chat_user.name}}</h1>
+                <p class="title">Advocate</p>
+                <p class="text-bold">{{i.chat_user.city}}</p>
+                <div style="margin: 24px 0;">
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                </div>
+                <a href="/advocate/advocate_profile/{{i.chat_user.id}}  " class="btn btn-outline-info ">View Profile</a>
+                <a href="/chat/{{i.chat_user.id}}  " class="btn btn-outline-dark ">Make Chat</a>
+
+            </div>
+
+
         </div>
-        <p><button>   <a href="/advocate/advocate_profile/{{i.chat_user.id}}  " >View Profile</a>
-        </button></p>
+        {% endfor %}
     </div>
-    {% endfor %}
+
+    {% endif %} {% if request.user.is_advocate %}
+
+    <div class="row">
+        {% for i in users %}
+        <div class=" col-lg-3 col-xl-3 col-sm-6 col-md-4 col-xs-6 mt-3">
+            <div class="card ">
+                <img src="{{i.chat_user2.image.url}}" alt="John" style="width:100%">
+                <h1>{{i.chat_user2.name}}</h1>
+                <p class="title">Advocate</p>
+                <p class="text-bold">{{i.chat_user2.city}}</p>
+                <div style="margin: 24px 0;">
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                </div>
+                <!-- <a href="/advocate/advocate_profile/{{i.chat_user.id}}  " class="btn btn-outline-info ">View Profile</a> -->
+                <a href="/chat/{{i.chat_user2.id}}  " class="btn btn-outline-dark ">Make Chat</a>
+
+            </div>
+
+
+        </div>
+        {% endfor %}
+    </div>
+
+    {% endif %}
 
 
 </body>

@@ -25,7 +25,7 @@ SECRET_KEY = '1=7rzfq45=xgf_s%2filf(f2$wma1rwb%fm41(&q!elzf@ibf0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1' , 'b1ea7b1bb612.ngrok.io']
+ALLOWED_HOSTS = ['127.0.0.1' , 'localhost']
 AUTH_USER_MODEL = 'vkeel.User'
 
 
@@ -100,16 +100,17 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql', 
-#         'NAME': 'minor_project',
-#         'USER': 'root',
-#         'PASSWORD': 'suraj0101',
-#         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'minorproject',
+        'USER': 'suraj',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+
 
 
 # Password validation
@@ -166,15 +167,15 @@ options={
         'managed': False,
     },
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'advolegal0@gmail.com' 
-EMAIL_HOST_PASSWORD = 'tvsbk2506'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'advolegal0@gmail.com' 
+# EMAIL_HOST_PASSWORD = 'tvsbk2506'
 
 
-SITE_ID = 2
+SITE_ID = 3
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -185,7 +186,7 @@ SOCIAL_PROVIDERS ={
             'email',
         ],
         'AUTH_PARAMS':{
-            'access_type':'offline',
+            'access_type':'online',
         }
     }
 }
