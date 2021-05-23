@@ -32,6 +32,8 @@ urlpatterns = [
     path('unfollow/<int:id>' , unfollow_view , name = 'unfollow'),
     path('chat_users/' , chatview ,name = 'chat' ),
     path('activate-chat/<int:id>' , activate_chat , name= 'activate_chat'),
+    path('deactivate-chat/<int:id>' , deactivate_chat , name= 'deactivate_chat'),
+
     path('accounts/', include('allauth.urls')),
   
     

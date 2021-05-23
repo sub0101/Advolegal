@@ -110,9 +110,8 @@
 
                             <a href="advocate/advocate_profile/{{i.id}} " class="view-profile btn btn-outline-primary mt-1" style="right: 0%; float: right;">View Profile</a>
                         </div>
-                        <div class="detail border container">
+                        <div class="detail border container ml-0 mr-0">
                             <div class="row " style="background-color :rgb(25,39,52);color: rgb(255, 255, 255);">
-
                                 <div class="col ">
 
                                     <h6 class="text-center">Experience</h6>
@@ -141,7 +140,7 @@
                                         <img class=" border bg-dark  " src=" {{i.image.url}} " alt="" style="border-radius: 50%; width: 120px; height: 120px;"> {% for key , value in detail.items %} {% if i.email == key %} {% if value.is_follow %}
                                         <p class="text-center" style="font-size: 5;"><a class="btn btn-outline-primary  " href="/unfollow/{{i.id}}">unfollow </a> </p>
 
-                                        {%else %}
+                                        {% else %}
                                         <p class="text-center" style="font-size: 5;"><a class="btn btn-outline-primary  " href="/follow/{{i.id}}">follow</a> </p>
 
                                         {% endif %} {% endif %} {% endfor %}</p>

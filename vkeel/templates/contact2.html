@@ -1,3 +1,4 @@
+{% include "base.html" %}
 <!DOCTYPE html>
 <html>
 {% load static %}
@@ -15,7 +16,7 @@
 
 <body>
 
-    <section class="sub-header">
+    <!-- <section class="sub-header">
         <nav>
             <a href="Index.html"><img src="images/justice.png"></a>
             <div class="nav-links" id="navlinks">
@@ -56,7 +57,7 @@
             <i class="fa fa-bars " onclick="showMenu()"></i>
         </nav>
 
-    </section>
+    </section> -->
 
     <!------ contact us -------->
 
@@ -67,7 +68,7 @@
     </section>
 
     <section class="contact-us ">
-
+        <form action=""></form>
         <div class="row ">
             <div class="contact-col ">
                 <div>
@@ -95,11 +96,12 @@
             </div>
             <div class="contact-col ">
 
-                <form action=" ">
-                    <input type="text " placeholder="Enter your name " required>
-                    <input type="email " placeholder="Enter Email Address " required>
-                    <input type="text " placeholder="Enter your query " required>
-                    <textarea rows="8 " placeholder="Message " required></textarea>
+                <form action=" " method="POST">
+                    {% csrf_token %}
+                    <input type="text " id="name" placeholder="Enter your name " name='name' required>
+                    <input type="email " placeholder="Enter Email Address " id="email" name='email' required>
+                    <input type="text " id="mobile" placeholder="Enter your Mobile " name='mobile' required>
+                    <textarea rows="8 " placeholder="Message " name='query' id="query" required></textarea>
                     <button type="submit " class="hero-btn red-btn ">Send Message</button>
                 </form>
             </div>
@@ -111,7 +113,7 @@
     <!------- Footer ------->
 
     <section class="footer ">
-        <h4>About Us</h4>
+        <h4 style="color: white;">Contact Us Us</h4>
         <div class="icons ">
             <i class="fa fa-facebook "></i>
             <i class="fa fa-twitter "></i>

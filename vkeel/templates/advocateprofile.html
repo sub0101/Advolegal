@@ -68,13 +68,14 @@
 
             <div class="col-sm-2 col-lg-2 col-md-2 ">
                 <p class="img-center "> <img class=" border bg-dark img-center " src=" {{advocate.image.url}} " alt=" " style="border-radius: 50%; width: 120px; height: 120px; "></p>
-                <p>{% post_to_facebook object_or_url "Share to Facebook " %}</p>
-                <a href="#" class="fa fa-facebook"></a>
 
-                <span>{% post_to_whatsapp object_or_url "Share to Whatsapp " %}</span>
-                <span> {% post_to_linkedin object_or_url "Share to Linkedin" %}</span>
-                <span> {% post_to_telegram object_or_url "Share to Telegram" %}</span>
+                <div>
+                    <span>{% post_to_facebook object_or_url "Share to Facebook " %}</span>
+                    <span>{% post_to_whatsapp object_or_url "Share to Whatsapp " %}</span>
+                    <span> {% post_to_linkedin object_or_url "Share to Linkedin" %}</span>
+                    <span> {% post_to_telegram object_or_url "Share to Telegram" %}</span>
 
+                </div>
 
             </div>
             <div class="col-sm-9 col-lg-9 mt-2 col-md-9 ">
@@ -94,17 +95,26 @@
 
                     </div>
                 </center>
-                {% if is_follow %}
+                {% if request.user != advocate %} {% if is_follow %}
                 <p class="text-center float-right " style="font-size: 5; "><a class="btn btn-outline-primary " href="/unfollow/{{advocate.id}} ">unfollow</a> </p>
 
                 {% else %}
                 <p class="text-center float-right " style="font-size: 5; "><a class="btn btn-outline-primary " href="/follow/{{advocate.id}} ">follow</a> </p>
-                {% endif %} {% if is_active == 0 %}
-                <p class="text-center float-left " style="font-size: 5; "><a class="btn btn-outline-danger " href="/activate-chat/{{advocate.id}} ">Activate Chat</a> </p>
-                {% else %}
-                <p class="text-center float-left " style="font-size: 5; "><a class="btn btn-outline-danger " href="/activate-chat/{{advocate.id}} ">DeActivate Chat</a> </p>
+                {% endif %} {% endif %}{% if request.user.is_user %} {% if is_active == 0 %}
+                <form method="POST" action="/activate-chat/{{advocate.id}}">
+                    {% csrf_token %}
+                    <button class="text-center float-left " style="font-size: 5; "><a class="btn btn-outline-danger " >Activate Chat</a> </button>
 
-                {% endif %}
+                </form>
+                {% else %}
+                <form action="/deactivate-chat/{{advocate.id}}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="text-center float-left " style="font-size: 5; "><a class="btn btn-outline-danger ">DeActivate Chat</a> </button>
+                </form>
+
+                {% endif %}{% endif %}
+
+
 
             </div>
 
