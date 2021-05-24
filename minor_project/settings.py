@@ -161,17 +161,10 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'static'),
-# )
 STATICFILES_DIRS = (
-    '/vkeel_user/static/css/',
-    '/vkeel_user/static/js/',
-    '/vkeel_user/static/images/'
+    os.path.join(BASE_DIR, 'static'),
+)
 
-
-    
-    )
 # message framework django
 
 MESSAGE_TAGS = {
