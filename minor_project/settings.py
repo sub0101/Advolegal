@@ -165,7 +165,12 @@ MEDIA_URL = '/media/'
 #     os.path.join(BASE_DIR, 'static'),
 # )
 STATICFILES_DIRS = (
-    '/vkeel_user/static/'
+    '/vkeel_user/static/css/',
+    '/vkeel_user/static/js/',
+    '/vkeel_user/static/images/'
+
+
+    
     )
 # message framework django
 
