@@ -37,7 +37,6 @@ AUTHENTICATION_BACKENDS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
     'django.contrib.sites',
     'vkeel.apps.VkeelConfig',
     'django.contrib.admin',
@@ -165,8 +164,7 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-STATICFILES_STORAGE  = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # message framework django
 
 MESSAGE_TAGS = {
