@@ -37,7 +37,7 @@ AUTHENTICATION_BACKENDS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nonstatic',
+    'whitenoise.runserver_nostatic',
     'django.contrib.sites',
     'vkeel.apps.VkeelConfig',
     'django.contrib.admin',
