@@ -52,7 +52,7 @@ def index(request):
     
 
 
-    return render(request, 'googlec03d39f834bfa5cb.html' , {'advocate':advocate , 'detail':detail})
+    return render(request, 'index.html' , {'advocate':advocate , 'detail':detail})
 
 
 
