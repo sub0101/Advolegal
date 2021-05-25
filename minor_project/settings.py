@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
+from typing import Sequence
 from django.contrib.messages import constants as messages
 import os
 
@@ -24,6 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 # SECRET_KEY = '1=7rzfq45=xgf_s%2filf(f2$wma1rwb%fm41(&q!elzf@ibf0'
