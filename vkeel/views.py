@@ -499,7 +499,7 @@ def advoprofile(request , id):
 
     
     
-
+    is_active = ""
     user = User.objects.get(id = id)
     profile= AdvocateProfile.objects.get(user = user)
     education_profile = EducationModel.objects.filter(user = user)
@@ -511,10 +511,13 @@ def advoprofile(request , id):
   
     
     value = check(profile.practicing_since,  Rating.objects.filter(user = user) , Answer.objects.filter(user  = user) , get_object_or_404(User,email = user.email) , request.user)
-    if request.user.is_user:
-        is_active =  len(ActiveChat.objects.filter( Q(chat_user2 = request.user) & Q(chat_user  = user)))
-    else:
-        is_active =  len(ActiveChat.objects.filter( Q(chat_user2 = user) & Q(chat_user  = request.user)))
+    try:
+        if request.user.is_user:
+            is_active =  len(ActiveChat.objects.filter( Q(chat_user2 = request.user) & Q(chat_user  = user)))
+        else:
+            is_active =  len(ActiveChat.objects.filter( Q(chat_user2 = user) & Q(chat_user  = request.user)))
+    except :
+        return redirect('index')
 
 
     return render(request , 'advocateprofile.html' ,{'rate':value['rate'] ,'experience':value['experience'], 'advocate':user , 'answer':value['answer'],
