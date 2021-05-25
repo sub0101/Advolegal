@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 from django.contrib.messages import constants as messages
 import os
-import cloudinary
-import cloudinary_storage
+
 
 import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
