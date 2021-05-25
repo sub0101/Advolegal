@@ -4,7 +4,7 @@ from .views import *
 from django.contrib.auth import views as auth_views
 urlpatterns = [
 
-    path( '' , index , name = 'index' ),
+    path( 'googlec03d39f834bfa5cb.html' , index , name = 'index' ),
     path('advocate/advocate_profile/<int:id>/' , advoprofile , name = 'advoprofile'),
     path('index' , index , name = 'index' ),
     path('contact' , contact , name = 'contact'),
