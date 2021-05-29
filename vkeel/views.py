@@ -33,7 +33,6 @@ sorted_advocates = []
 
 
 def send_email(subject , message , email):
-    print(type(email))
     send_mail(subject,message , 'AdvoLegal',[str(email)])
     
 def index(request):
@@ -80,8 +79,6 @@ def login_view(request):
 
 def edit_profile_removeCopy(user , value , type):
     bool = True
-    print(user.profile.visiting_courts)
-    print('run')
     if type == 'law':
 
         for i in user.profile.area_of_law:
@@ -306,7 +303,7 @@ def contact(request):
         # message = 'ddddd'
         message = 'We Have Recieved Your message and would like thank you for writing to us if your query is urgent please use telephone number listed below to talk to one of our staff member , other wise we will reply by email as soon as possible\n Contact Number: 8448862887 \n Email:advolegal0@gmail.com' 
       
-        # send_email(subject ,message , email )
+        send_email(subject ,message , email )
         return redirect('/contact')
     return render(request, 'contact2.html')
 
@@ -417,7 +414,7 @@ def reply(request , id):
         answer.save()
         subject = 'Reply On Your Quetion'
         message = 'Hii , {name} , {user} Reply On your Quetions \n CHeck The reply \n http://127.0.0.1:8000/answer/{id}'.format( user =request.user.name ,   name = ask_quetion_user.name , id = id)
-        # send_email(subject , message  ,ask_quetion_user.email)
+        send_email(subject , message  ,ask_quetion_user.email)
         return redirect('/questions/answer/{}'.format(id))
     return render(request , 'quetions.html')
 
@@ -702,7 +699,7 @@ def handlerequest(request):
             message = message + " "+ detail
             subject='ADvolegal New User Connection'
             
-            # send_mail( subject, message ,'advolegal0@gmail.com', [sender.advocate])
+            send_mail( subject, message ,'advolegal0@gmail.com', [sender.advocate])
             verify = 'false'
         else:
             print('failed')

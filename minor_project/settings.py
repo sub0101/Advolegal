@@ -172,12 +172,12 @@ options={
         'managed': False,
     },
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'advolegal0@gmail.com' 
-# EMAIL_HOST_PASSWORD = 'tvsbk2506'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'advolegal0@gmail.com' 
+EMAIL_HOST_PASSWORD = 'tvsbk2506'
 
 
 SITE_ID = 2
