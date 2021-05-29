@@ -25,7 +25,7 @@ SECRET_KEY = '1=7rzfq45=xgf_s%2filf(f2$wma1rwb%fm41(&q!elzf@ibf0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 AUTH_USER_MODEL = 'vkeel.User'
 
 
@@ -180,7 +180,7 @@ EMAIL_HOST_USER = 'advolegal0@gmail.com'
 EMAIL_HOST_PASSWORD = 'tvsbk2506'
 
 
-SITE_ID = 1
+SITE_ID = 3
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
