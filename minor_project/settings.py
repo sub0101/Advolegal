@@ -25,7 +25,7 @@ SECRET_KEY = '1=7rzfq45=xgf_s%2filf(f2$wma1rwb%fm41(&q!elzf@ibf0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['advolegal.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['*', 'localhost']
 AUTH_USER_MODEL = 'vkeel.User'
 
 
@@ -180,7 +180,7 @@ EMAIL_HOST_USER = 'advolegal0@gmail.com'
 EMAIL_HOST_PASSWORD = 'tvsbk2506'
 
 
-SITE_ID = 2
+SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
