@@ -19,7 +19,7 @@
 
 <body class="">
 
-    
+
     <form action="" method='POST' enctype="multipart/form-data">
         {% csrf_token %}
         <div class=" mt-5" style="max-width: 100; padding-left: 50px; padding-right: 50px;">
@@ -32,8 +32,9 @@
 
 
                         <center>
-                            <img class=" border bg-dark " src=" {{user.image.url}} " alt="" style="border-radius: 50%; width: 200px; height: 200px;">
-
+                            {% if user.image %}
+                            <img class=" border bg-dark " src="{{user.image.url}}" id='image_upload' alt="" style="border-radius: 50%; width: 200px; height: 200px;"> {% else %}
+                            <img class=" border bg-dark " src=" " id='image_upload' alt="" style="border-radius: 50%; width: 200px; height: 200px;"> {% endif %}
                             <h4 class="mt-2"> {{user.name}}</h4>
 
                         </center>
@@ -64,7 +65,7 @@
 
                     <div class="row position-relative p-0 ">
                         <div class="container  position-relative p-0">
-                            <h4 class="font-weight-bold">Persoanl</h4>
+                            <h4 class="font-weight-bold">Personal</h4>
                             <p class="ml-2"> Update Your Personal Information</p>
                             <hr>
 
@@ -96,7 +97,7 @@
                             <div class="col-sm-12 col-lg-6">
                                 <div class="row">
 
-                                   
+
                                     {{form2.gender}}
                                 </div>
 
@@ -212,7 +213,7 @@
                         </div>
 
                     </div>
-{{form1.errors}} {{form2.errors}}
+                    {{form1.errors}} {{form2.errors}}
 
                     <!-- Professional detail   -->
                     <center>

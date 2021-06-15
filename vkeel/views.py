@@ -1,5 +1,6 @@
 
 from datetime import datetime
+import json
 from os import error
 from django.db.models import Q
 from django.contrib import messages
@@ -33,7 +34,6 @@ sorted_advocates = []
 
 
 def send_email(subject , message , email):
-    print(type(email))
     send_mail(subject,message , 'AdvoLegal',[str(email)])
     
 def index(request):
@@ -43,8 +43,7 @@ def index(request):
     detail = return_value[0]
     advocate = return_value[1]
     advo  = list()
-    print(advocate)
-    print(detail)
+    
     for i  in range(0,4):
         if len(advocate)>i:
 
@@ -80,8 +79,6 @@ def login_view(request):
 
 def edit_profile_removeCopy(user , value , type):
     bool = True
-    print(user.profile.visiting_courts)
-    print('run')
     if type == 'law':
 
         for i in user.profile.area_of_law:
@@ -132,10 +129,10 @@ def edit_profile(request, id):
     form2 = ProfileForm(request.POST or None,  instance=profile_model)
     form3 = CaseForm()
     form4 = EducationForm()
-   
+    
     if request.method == 'POST' :
 
-      
+        
         if request.POST.get('delete')!=None:
             
             value = request.POST.get('delete').split(',')
@@ -155,9 +152,10 @@ def edit_profile(request, id):
 
         if form2.is_valid():  
             ajax_value = ""
+            
+            
             if request.POST.get('check') == None:
                 
-
                 form2.save()
             elif request.POST.get('check') !=None:
                 
@@ -183,7 +181,7 @@ def edit_profile(request, id):
                     if value:
                         profile_model.area_of_law.append(ajax_value)
 
-                    form2.save(commit=False).user = request.user
+                    # form2.save(commit=False).user = request.user
                     form2.save()
                     response={'msg':ajax_value}
       
@@ -196,7 +194,7 @@ def edit_profile(request, id):
                     if value:
                         profile_model.service_cities.append(ajax_value)
                     
-                    form2.save(commit=False).user = request.user
+                    # form2.save(commit=False).user = request.user
                     form2.save()
                     
                     response={'msg':ajax_value}
@@ -306,7 +304,7 @@ def contact(request):
         # message = 'ddddd'
         message = 'We Have Recieved Your message and would like thank you for writing to us if your query is urgent please use telephone number listed below to talk to one of our staff member , other wise we will reply by email as soon as possible\n Contact Number: 8448862887 \n Email:advolegal0@gmail.com' 
       
-        # send_email(subject ,message , email )
+        send_email(subject ,message , email )
         return redirect('/contact')
     return render(request, 'contact2.html')
 
@@ -344,11 +342,10 @@ def edit_userprofile(request , id):
     userform = edit_user_form(data=request.POST , files=request.FILES or None, instance = user)
     profile_form = UserProfileform(data=request.POST , files=request.FILES , instance = profile)
     if request.method == 'POST':
-        print('inside0')
         if profile_form.is_valid() and userform.is_valid():
-            print('inside1')
+            
             profile_form.save()         
-            print('inside')
+        
             userform.save()
             return redirect('/edit_userprofile/{}'.format(profile.id))
     else:    
@@ -367,7 +364,7 @@ def quetion_view(request):
 
        
         if request.POST.get('filter') is not None:
-            print(request.POST.get('filter'))
+        
             questions = Question.objects.filter(area_of_law = request.POST.get('filter'))
             questions = reversed(questions)
          
@@ -417,7 +414,7 @@ def reply(request , id):
         answer.save()
         subject = 'Reply On Your Quetion'
         message = 'Hii , {name} , {user} Reply On your Quetions \n CHeck The reply \n http://127.0.0.1:8000/answer/{id}'.format( user =request.user.name ,   name = ask_quetion_user.name , id = id)
-        # send_email(subject , message  ,ask_quetion_user.email)
+        send_email(subject , message  ,ask_quetion_user.email)
         return redirect('/questions/answer/{}'.format(id))
     return render(request , 'quetions.html')
 
@@ -435,7 +432,6 @@ def check(experience , rate , answer , following , user):
     follower = Follower.objects.filter(following  = following).count
     # print(follower)
     is_follow = 0
-    print(user)
     try:
         if user is not None:
       
@@ -470,13 +466,16 @@ def check(experience , rate , answer , following , user):
         return value
 
 def advoprofile(request , id):
+    
 
     if request.method == 'POST':
         rating_user =""
         obj=None
         bool=True
+        print('ighhfhfhgft5')
         try:
             user = User.objects.get(id = id)
+            print(user.name)
             rating_user = Rating.objects.get(reviewer = request.user.email , user = user)
             bool = True
     
@@ -485,10 +484,15 @@ def advoprofile(request , id):
             bool= False
    
         if bool:
+            print('ia')
+            print(rating_user)
+            print(int(request.POST.get('temp')))
+            print( request.POST.get('post_review'))
             rating_user.post = request.POST.get('post_review')
             rating_user.rate = int(request.POST.get('temp'))
             rating_user.save()
         else:
+            print('i')
             user = User.objects.get(id = id)
             val = request.POST.get('temp')
 
@@ -498,7 +502,7 @@ def advoprofile(request , id):
         
 
     
-    
+    print('hh')
     is_active = ""
     user = User.objects.get(id = id)
     profile= AdvocateProfile.objects.get(user = user)
@@ -546,14 +550,20 @@ def sortLaw(users , law):
                 law_list.append(i.user)
     
     return law_list
-def search_name(users , name):
-  
+def search_advo( request ):
+    if request.method == 'POST':
+        name_list  = list(User.objects.filter(is_advocate = True).values())
+        return  JsonResponse(name_list , safe= False)
+   
+            
+def search_name(user,name):
+
     name_list = []
-    for i in users:
+    for i in user:
         if i.name == name:
             name_list.append(i)
-    print(name_list)
     return  name_list
+
             
             
 
@@ -567,19 +577,16 @@ def sortGender(users , gender):
         
           gender_list.append(users[i].user)
 
-    print(gender_list)
     return gender_list
 
     
 def sort_advocate(advocate , user):
     rate ={}
-    print('sorted')
-    print(advocate)
+    
     for i in range(0 , len(advocate)):
         view = check(advocate[i].profile.practicing_since , Rating.objects.filter(user =advocate[i]) , Answer.objects.filter(user = advocate[i]) , get_object_or_404(User , email = advocate[i]) , user)
        
         rate[advocate[i].email] = view 
-        print(rate)
        
 
     rate = OrderedDict(sorted(rate.items(), 
@@ -605,28 +612,29 @@ def advo_search(request):
     # profile  = AdvocateProfile.objects.get(user  = advocate[0])
    
     if request.method == 'POST':
-     
         gender = request.POST.get('gender')
         city = request.POST.get('city')
      
         law = request.POST.get('filter_law')
-        name = request.POST.get('name')
+        name = request.POST.get('myCountry')
        
         if gender !=None:
-        
+           print('gender')
            gender_list =  sortGender(User.objects.all() , gender )
            advocate = gender_list
     
-        elif city !='None':
-         
+        elif city != None :
+            print('city')
+            print(request.POST.get('city')
+)
             city_list = search_city(User.objects.all() , city)
             advocate = city_list
-        elif name !=None:
-       
-            print(request.POST.get('name'))
+        elif name != 'None':
+            print('search')
             name_list = search_name(User.objects.filter(is_advocate = True) , name)
             advocate = name_list
         elif law!= 'all': 
+            print('law')
             law_list = sortLaw(User.objects.all() , law)
             advocate = law_list
         
@@ -646,8 +654,7 @@ def instantadvice(request , id):
     advice = AdviceForm()
     user = User.objects.get(id = id )
     global orderid
-    # orderid+=request.user.id
-    print(orderid)
+    
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -670,7 +677,6 @@ def instantadvice(request , id):
         sender = obj
         global reciever
         reciever = user
-        print(str(sender) + str(reciever))
         return render(request , 'payment.html', {'param_dict':param_dict})
     return render(request, 'advice.html' , {'advice':advice})
     
@@ -693,16 +699,15 @@ def handlerequest(request):
             global reciever
             global obj
             obj.save()
-            print(sender)
             subject = 'Your Transaction Has been done '
             message= 'Hello {name} your query has been successfully submited . Advocate contact you as soon as possible if there is no call from advocate And if You feel any Wrong then please Contact Us We Will Do Our Best. Thank You \n Your Transaction Id: {transaction}'.format(name = sender.name , transaction = obj.transaction_id)
             send_mail(subject,message ,'advolegal0@gmail.com', [sender.user.email])
-            message = 'Hello Mr./Ms . {name} New User Want to  Contact You Please Call him as soon as possible user is waiting for you. We will send money to your account shortly. Thank You'.format(name = reciever.email  ,transaction = obj.transaction_id)
+            message = 'Hello Mr./Ms . {name} New User Want to  Contact You Please Call him as soon as possible user is waiting for you. We will send money to your account shortly. Thank You'.format(name = reciever.email  )
             detail = '\n Name: {name} ,\n  email: {email} ,\n  contact : {contact}'.format(name = sender.name , email = sender.advocate , contact = sender.mobile)
             message = message + " "+ detail
             subject='ADvolegal New User Connection'
             
-            # send_mail( subject, message ,'advolegal0@gmail.com', [sender.advocate])
+            send_mail( subject, message ,'advolegal0@gmail.com', [sender.advocate])
             verify = 'false'
         else:
             print('failed')
@@ -717,7 +722,6 @@ def follow_view(request , id):
     follower = get_object_or_404(User ,id = request.user.id)
     following  = get_object_or_404(User , id = id)
     print(str(follower)+ str(following))
-    print('hii')
     obj= {}
     try:
      obj =   Follower.objects.get( follower = follower , following = following) 
@@ -768,3 +772,10 @@ def deactivate_chat(request , id):
             ActiveChat.objects.filter(Q(chat_user2 = User.objects.get(id = id)) & Q(chat_user  = request.user)).delete()
 
     return redirect('/advocate/advocate_profile/{}'.format(User.objects.get(id = id).id))
+
+
+
+def getadvodata(request , id):
+    
+    advocates = User.objects.filter(advocate = True)
+    return render(request , 'advo_search.html' , {'advocates':advocates})

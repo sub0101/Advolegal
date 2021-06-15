@@ -8,6 +8,7 @@ urlpatterns = [
     path('advocate/advocate_profile/<int:id>/' , advoprofile , name = 'advoprofile'),
     path('index' , index , name = 'index' ),
     path('contact' , contact , name = 'contact'),
+    
     path('about' , about , name = 'about'),
     path('ask_quetion' , quetion_view , name = 'quetions'),
     path('questions' , quetion_view , name = 'quetions' ),
@@ -32,7 +33,7 @@ urlpatterns = [
     path('chat_users/' , chatview ,name = 'chat' ),
     path('activate-chat/<int:id>' , activate_chat , name= 'activate_chat'),
     path('deactivate-chat/<int:id>' , deactivate_chat , name= 'deactivate_chat'),
-
+    path('search_advo/' , search_advo , name = 'search_advo'),
     path('accounts/', include('allauth.urls')),
   
     

@@ -82,20 +82,20 @@
                                     onchange="this.form.submit()" hidden='true'> <i> </i></label>
                         </div>
                     </div>
-
                 </form>
             </div>
 
 
 
             <div class="col-lg-9  mt-2 col-md-12 ">
-                <form method="POST">
-                    <div class="row mt-3 ">
-                        {% csrf_token %}
-                        <input class=" border border-danger bg-white   ml-3 mr-3" type="search" name='name' id='name' placeholder="Search" aria-label="Search" style="width: 100%; height: 100%;" onchange="this.form.submit()">
-
+                <form autocomplete="off" method='POST' action="/advo_search">
+                    {% csrf_token %}
+                    <div class="autocomplete container">
+                        <input id="myInput" type="text" name="myCountry" placeholder="Search Advocates" style="width: 100%;">
                     </div>
+                    <input type="submit" value='search' class=''>
                 </form>
+
                 <div class="container mw-100 p-0">
 
                     {% for i in advocate %}
@@ -140,10 +140,8 @@
                                         <img class=" border bg-dark  " src=" {{i.image.url}} " alt="" style="border-radius: 50%; width: 120px; height: 120px;"> {% for key , value in detail.items %} {% if i.email == key %} {% if value.is_follow %}
                                         <p class="text-center" style="font-size: 5;"><a class="btn btn-outline-primary  " href="/unfollow/{{i.id}}">unfollow </a> </p>
 
-                                        {% else %}
-                                        <p class="text-center" style="font-size: 5;"><a class="btn btn-outline-primary  " href="/follow/{{i.id}}">follow</a> </p>
-
-                                        {% endif %} {% endif %} {% endfor %}</p>
+                                        {% else %} {% if user.is_user %}
+                                        <p class="text-center" style="font-size: 5;"><a class="btn btn-outline-primary  " href="/follow/{{i.id}}">follow</a> </p>{% endif %} {% endif %} {% endif %} {% endfor %}</p>
 
 
 
@@ -163,9 +161,11 @@
                                 </div>
                             </div>
 
-                            {% if user.is_authenticated %}
-                            <p class="text-center"><a class="btn btn-outline-danger mt-3 mb-3 " href="/advice/{{i.id}}">Instant Advice</a> </p>
-                            {% else %}
+
+
+                            {% if user.is_authenticated %} {% if user.is_user %}
+
+                            <p class="text-center"><a class="btn btn-outline-danger mt-3 mb-3 " href="/advice/{{i.id}}">Instant Advice</a> </p>{% endif %} {% else %}
                             <p class="text-center"><a class="btn btn-outline-danger mt-3 mb-3 " href="main_signup">Instant Advice</a> </p>
                             {% endif %}
                             <div style="color:red">

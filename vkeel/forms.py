@@ -38,7 +38,6 @@ class AdvocateSignupForm(UserCreationForm):
         super(AdvocateSignupForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update( {'required': True, 'name': 'name', 'id': 'name', 'class': 'form-control1', 'placeholder': 'Name'})
         self.fields['email'].widget.attrs.update( {'required': True, 'name': 'email', 'id': 'email', 'class': 'form-control1 signup_input', 'placeholder': 'Email'}),
-        # self.fields['mobile'].widget.attrs.update({'name': 'mobile', 'id': 'mobile', 'class': 'form-control1 ', 'placeholder': 'Mobile'}),
         self.fields['city'].widget.attrs.update( {'name': 'city', 'id': 'city', ' class': 'form-control1 signup_input', 'placeholder': 'City'})
         self.fields['password1'].widget.attrs.update( {'name': 'password1', 'id': 'password1', 'class': 'form-control1 signup_input', 'placeholder': 'Password'}),
         self.fields['password2'].widget.attrs.update( {'name': 'password2', 'id': 'password2', 'class': 'form-control1 signup_input', 'placeholder': 'Confirm Password'})
@@ -55,7 +54,7 @@ class DateInput2(forms.DateInput):
 class ProfileForm(forms.ModelForm):
 
     gender = forms.ChoiceField( choices=gender, widget=forms.RadioSelect, required=False)
-
+    mobile = forms.CharField(min_length=10 ,required=False )
     class Meta:
         model = AdvocateProfile
         fields = ('dob', 'gender',   'pincode', 'state', 'address', 'mobile','language_spoken', 'practicing_since',  'enrollment_number', 'bio')
@@ -75,17 +74,14 @@ class ProfileForm(forms.ModelForm):
         self.fields['language_spoken'].widget.attrs.update(   {'required': False, 'class': 'form-control1 '}),
         self.fields['practicing_since'].widget.attrs.update(   {'required': False, 'class': 'form-control1 '}),
         self.fields['enrollment_number'].widget.attrs.update(   {'required': False, 'class': 'form-control1 '}),
+        self.fields['mobile'].widget.attrs.update(   {'required': False, 'class': 'form-control1 '}),
 
         self.fields['bio'].widget.attrs.update( {'required': False, 'class': 'form-control '}),
-        # self.fields['service_cities'].widget.attrs.update(  {'required': False, 'class': 'form-control1 ', 'rows': '3'}),
-        # self.fields['visiting_courts'].widget.attrs.update(  {'required': False, 'class': 'form-control1'}),
-        # self.fields['area_of_law'].widget.attrs.update(  {'required': False, 'class': 'form-control1 '}),
-
+       
 
 class edit_user_form(forms.ModelForm):
 
     email = forms.EmailField(disabled=True)
-    # mobile = forms.CharField(required=False)
     image = forms.ImageField(widget=FileInput, required=False)
 
     class Meta:
@@ -96,9 +92,8 @@ class edit_user_form(forms.ModelForm):
         super(edit_user_form, self).__init__(*args, **kwargs)
         self.fields['email'].widget.attrs.update({'required': True, 'name': 'email', 'id': 'email', 'class': 'form-control1 signup_input'}),
         self.fields['name'].widget.attrs.update({'required': False, 'name': 'name', 'id': 'name', 'class': 'form-control1 signup_input'})
-        # self.fields['mobile'].widget.attrs.update({'required': False, 'name': 'mobile', 'id': 'mobile', 'class': 'form-control1 signup_input'}),
         self.fields['city'].widget.attrs.update({'required': False,  'name': 'city', 'id': 'city', ' class': 'form-control1 signup_input'})
-        self.fields['image'].widget.attrs.update( {'required': False, 'class': 'text-file'}),
+        self.fields['image'].widget.attrs.update( {'required': False, 'class': 'text-file'  ,'onchange':'fun(this)' , }),
 
 
 class EducationForm(forms.ModelForm):
@@ -148,10 +143,10 @@ class UserSignupForm(UserCreationForm):
 class UserProfileform(forms.ModelForm):
 
     gender = forms.ChoiceField( choices=gender, widget=forms.RadioSelect, required=False)
-
+    mobile = forms.CharField(min_length=10 , required = False  )
     class Meta:
         model = UserProfile
-        fields = ['state', 'pincode', 'mobile','address', 'dob', 'gender']
+        fields = ['state', 'pincode', 'mobile','address', 'dob', 'gender' ]
         widgets = {
 
             'dob': DateInput2(),
@@ -185,7 +180,7 @@ class UserProfileform(forms.ModelForm):
 
 
 class AdviceForm(forms.ModelForm):
-
+    mobile = forms.CharField(min_length=10)
     class Meta:
         model = InstantAdvice
         fields = ['name','mobile','advocate']

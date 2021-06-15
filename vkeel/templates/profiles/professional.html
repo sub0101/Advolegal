@@ -35,7 +35,7 @@
 
 <!-- Body Tag -->
 
-{% comment %} modal  {% endcomment %}
+{% comment %} modal {% endcomment %}
 <div class="modal fade" id="caseModal" tabindex="-1" role="dialog" aria-labelledby="caseModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -104,7 +104,7 @@
             </div>
             <div class="modal-body">
                 <form action='' method="POST">
-                   
+
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="college-name" class="col-form-label">College Name</label>
@@ -135,7 +135,7 @@
 {% comment %} code here {% endcomment %}
 
 <div class="container-fluid mt-5 ">
-    <form action="" method='POST' class ='professional_form' enctype="multipart/form-data">
+    <form action="" method='POST' class='professional_form' enctype="multipart/form-data">
 
         <div class="row ">
 
@@ -165,7 +165,7 @@
 
                 </div>
 
-                
+
 
             </div>
 
@@ -216,7 +216,7 @@
 
                             <div class="col-sm-12 col-md-6">
 
-                                <div class="row mt-5 mb-5">
+                                <div class="row mt-3 ">
                                     <div class="col-sm-12 col-lg-4">
                                         <label for="" class=""> Enrollment No.</label>
 
@@ -224,6 +224,18 @@
                                     <div class="col-sm-12 col-lg-8">
 
                                         {{form2.enrollment_number}}
+
+                                    </div>
+
+                                </div>
+                                <div class="row mt-5 mb-5">
+                                    <div class="col-sm-12 col-lg-4">
+                                        <label for="" class=""> Mobile.</label>
+
+                                    </div>
+                                    <div class="col-sm-12 col-lg-8">
+
+                                        {{form2.mobile}}
 
                                     </div>
 
@@ -253,7 +265,7 @@
                             </div>
                             <div class="col-sm-12 col-lg-8">
 
-                                <select class="mw-100" name="add_cities" id="add_cities" style=" color: rgb(248, 3, 3); background-color: rgba(5, 5, 5, 0.349); border: 0; width: 100%; backface-visibility: hidden;" >
+                                <select class="mw-100" name="add_cities" id="add_cities" style=" color: rgb(248, 3, 3); background-color: rgba(5, 5, 5, 0.349); border: 0; width: 100%; backface-visibility: hidden;">
                                         
                                     <option value="">--------------</option>
                                  
@@ -263,10 +275,8 @@
                                     {% endfor %}
                                     <textarea class="mw-100" name="service_cities" id="id_service_cities" cols="80" rows="2" disabled ></textarea>
                                 </select>
-                                <p id = "output">{% for i in user.profile.service_cities  %}
-                                    | {{i}} <button class='fas fa-minus bg-transparent border-0' value = '{{i}},service_cities' name = 'delete' id = 'delete' onclick="this.form.submit()"></button> |
-                                {% endfor %} </p>   
-                            <br>
+                                <p id="output">{% for i in user.profile.service_cities %} | {{i}} <button class='fas fa-minus bg-transparent border-0' value='{{i}},service_cities' name='delete' id='delete' onclick="this.form.submit()"></button> | {% endfor %} </p>
+                                <br>
 
                             </div>
 
@@ -277,8 +287,8 @@
 
                             </div>
                             <div class="col-sm-12 col-lg-8">
-                                
-                                    <select class="mw-100" name="add_law" id="add_law".......... style=" color: rgb(248, 3, 3); background-color: rgba(5, 5, 5, 0.349); border: 0; width: 100%; backface-visibility: hidden;" >
+
+                                <select class="mw-100" name="add_law" id="add_law" .......... style=" color: rgb(248, 3, 3); background-color: rgba(5, 5, 5, 0.349); border: 0; width: 100%; backface-visibility: hidden;">
                                         
                                         <option value="">--------------</option>
                                      
@@ -288,11 +298,9 @@
                                         {% endfor %}
                                         <textarea class="mw-100" name="area_of_laww" id="id_area_of_law" cols="80" rows="2"  disabled></textarea>
                                     </select>
-                                    <p id = "output">{% for i in user.profile.area_of_law  %}
-                                       | {{i}} <button class='fas fa-minus bg-transparent border-0' value = '{{i}},area_of_law' name = 'delete' id = 'delete' onclick="this.form.submit()"></button> |
-                                    {% endfor %} </p>   
+                                <p id="output">{% for i in user.profile.area_of_law %} | {{i}} <button class='fas fa-minus bg-transparent border-0' value='{{i}},area_of_law' name='delete' id='delete' onclick="this.form.submit()"></button> | {% endfor %} </p>
                                 <br>
-                                   
+
                             </div>
 
                         </div>
@@ -303,7 +311,7 @@
 
                             </div>
                             <div class="col-sm-12 col-lg-8">
-                                <select class="mw-100" name="add_courts" id="add_courts" style=" color: rgb(248, 3, 3); background-color: rgba(5, 5, 5, 0.349); border: 0; width: 100%; backface-visibility: hidden;" >
+                                <select class="mw-100" name="add_courts" id="add_courts" style=" color: rgb(248, 3, 3); background-color: rgba(5, 5, 5, 0.349); border: 0; width: 100%; backface-visibility: hidden;">
                                         
                                     <option value="">--------------</option>
                                  
@@ -313,11 +321,9 @@
                                     {% endfor %}
                                     <textarea class="mw-100" name="visiting_courts" id="id_visiting_courts" cols="80" rows="2" disabled ></textarea>
                                 </select>
-                                <p id = "output">{% for i in user.profile.visiting_courts  %}
-                                    | {{i}} <button class='fas fa-minus bg-transparent border-0' value = '{{i}},visiting_courts' name = 'delete' id = 'delete' onclick="this.form.submit()"></button> |
-                                {% endfor %} </p>   
-                            <br>
-                                   
+                                <p id="output">{% for i in user.profile.visiting_courts %} | {{i}} <button class='fas fa-minus bg-transparent border-0' value='{{i}},visiting_courts' name='delete' id='delete' onclick="this.form.submit()"></button> | {% endfor %} </p>
+                                <br>
+
                             </div>
 
                         </div>
@@ -398,7 +404,7 @@
 
                 <!-- Winning Cases -->
 
-            <div class="row  mt-5"> 
+                <div class="row  mt-5">
                     <div class="container  border border-info bg-white">
                         <div class="row">
                             <div class="col">
@@ -475,7 +481,7 @@
 
                                     </div>
                                     <div class="col-sm-12 col-lg-7 border">
-                                
+
                                         {{i.case_description}}
 
                                     </div>
@@ -484,7 +490,7 @@
                             </div>
                             <div class="">
 
-                                <a href="/delete_case/{{i.id}}" ><i
+                                <a href="/delete_case/{{i.id}}"><i
                                         class="material-icons mt-5">&#xe15c;</i></a>
                             </div>
                         </div>
@@ -492,7 +498,7 @@
                         {% endfor %}
                     </div>
 
-                </div> 
+                </div>
 
                 <!-- About  -->
 
@@ -515,7 +521,7 @@
                         <div class="row   mb-2">
 
                             <div class=" col-sm-12 col-lg-3">
-                                <h5 class="text-center mt-2"><label for="" > Bio</label></h5>
+                                <h5 class="text-center mt-2"><label for=""> Bio</label></h5>
 
                             </div>
                             <div class="col-sm-12 col-lg-9">
@@ -530,12 +536,12 @@
 
 
                 </div>
-                
 
-            <center>
-                <button id = 'submitBtn' class="btn btn-outline-info mb-2" type="submit"> Save</button>
 
-            </center>
+                <center>
+                    <button id='submitBtn' class="btn btn-outline-info mb-2" type="submit"> Save</button>
+
+                </center>
             </div>
 
         </div>

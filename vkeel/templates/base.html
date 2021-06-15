@@ -15,26 +15,28 @@
     <link href='https://fonts.googleapis.com/css?family=IM Fell Great Primer SC' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Bree Serif' rel='stylesheet'>
-    <link rel="icon" href=" {% static '/images/logo4.jpeg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+
+    <!-- <link rel="stylesheet" href="{% static '/css/bell.css' %}"> -->
+    <link rel="icon" href=" {% static 'images/logo4.jpeg' %}" type="image/x-icon">
     <style>
         body {
-            /* background: #ADA996;
+            background: #ADA996;
             background: -webkit-linear-gradient(to left, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);
-            background: linear-gradient(to left, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); */
-            background-color: rgb(25, 39, 52);
+            background: linear-gradient(to left, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);
+            /* background-color: rgb(25, 39, 52);
             ;
-            padding: 10px;
+            padding: 10px; */
         }
         
         .back {
-            /* background-size: cover;
+            background-size: cover;
             background-position: center;
-         
             height: 100%;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: cover; */
-            background-color: rgb(25, 39, 52);
+            background-size: cover;
+            /* background-color: rgb(25, 39, 52); */
             ;
         }
         
@@ -146,7 +148,7 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#askquerymodal">Ask Quetions</a>
+                    <a class="nav-link" data-toggle="modal" data-target="#askquerymodal">Ask a Question</a>
                 </li>
                 {% endif %}
                 <li>
@@ -216,7 +218,8 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <script src=" {% static '/js/base.js' %} ">
     </script>
-
+    <script src="{% static '/js/search.js' %}"></script>
+    <script src="{% static '/js/imageupload.js' %}"></script>
 
 </body>
 
