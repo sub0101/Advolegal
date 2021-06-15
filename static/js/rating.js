@@ -100,6 +100,7 @@ if (one) {
             e.preventDefault()
             const id = e.target.id
             $("#submitBtn").click(function() {
+                console.log('h')
 
                 $("#my_form").submit(); // Submit the form
             });
