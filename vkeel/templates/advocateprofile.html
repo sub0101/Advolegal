@@ -260,7 +260,7 @@
                     <h4>Review</h4>
                     <hr>
 
-                    <form class="rate-form " ,action=" " method="POST " id="my_form ">
+                    <form class="rate-form" method="POST" id="my_form">
                         {% csrf_token %}
 
                         <button id='first' class="fa fa-star fa-2x my-btn "></button>
@@ -270,11 +270,11 @@
                         <button id='fifth' class="fa fa-star fa-2x my-btn "></button>
 
                         <div class="container mt-5 ">
-                            <textarea name="post_review " id="post_review " cols="50 " rows="4 " class="mw-100 "></textarea>
+                            <textarea name="post_review" id="post_review" cols="50" rows="4" class="mw-100"></textarea>
                         </div>
-                        <input type="text " id="temp " name='temp' value=0 hidden='true'> {% if user.is_authenticated %}
+                        <input type="text" id="temp" name='temp' value=0 hidden='true'> {% if user.is_authenticated %}
                         <center>
-                            <button type="submit " id='submitBtn' class="btn btn-outline-danger "> click</button>
+                            <button type="submit" id='submitBtn' class="btn btn-outline-danger "> click</button>
                         </center>
                         {% else %}
                         <h5> please login
