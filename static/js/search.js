@@ -105,6 +105,7 @@ var countries = []
 
 
 $('#myInput').on('click', function(e) {
+    console.log('a')
     var csrf = document.getElementsByName('csrfmiddlewaretoken')
     $.ajax({
 

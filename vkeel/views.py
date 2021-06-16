@@ -560,9 +560,9 @@ def sortLaw(users , law):
 def search_advo( request ):
     if request.method == 'POST':
         print('inside')
-        name_list  = list(User.objects.filter(is_advocate = True).values())
+        name_list  = list(User.objects.filter(is_advocate = True).values('name'))
         return  JsonResponse(name_list , safe= False)
-   
+
             
 def search_name(user,name):
 
@@ -573,8 +573,7 @@ def search_name(user,name):
     return  name_list
 
             
-            
-
+        
 def sortGender(users , gender):
     
     gender_list = []
@@ -612,7 +611,7 @@ def sort_advocate(advocate , user):
     return [rate , advocate]
 
 def advo_search(request):
-    
+    print('a')
     advice = AdviceForm()
     advocate = User.objects.filter(is_advocate = True)
     user = User.objects.filter(is_advocate = True )
