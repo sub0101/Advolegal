@@ -45,7 +45,7 @@
                             <h6 class="mt-4">Law</h6>
 
                             <select class="mw-100" name="filter_law" id="filter_law" style=" background: transparent;" onchange="this.form.submit()">
-                                <option value="None">Select Law</option>
+                                <option value="all">Select Law</option>
                                 <option value = 'all'> All Law</option> 
                                 {% for i in filter_law  %}
                                 <option value= "{{i}}" >{{i}}</option>

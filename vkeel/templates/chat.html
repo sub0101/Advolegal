@@ -80,7 +80,9 @@
             <div class="card ">
                 <img src="{{i.chat_user2.image.url}}" alt="John" style="width:100%">
                 <h1>{{i.chat_user2.name}}</h1>
-                <p class="title">Advocate</p>
+                {% if user.is_user%}
+                <p class="title">Advocate</p>{% else %}
+                <p class="title">User</p> {% endif %}
                 <p class="text-bold">{{i.chat_user2.city}}</p>
                 <div style="margin: 24px 0;">
                     <a href="#"><i class="fa fa-dribbble"></i></a>
