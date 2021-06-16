@@ -50,7 +50,7 @@ class AdvocateProfile(models.Model):
     enrollment_number = models.CharField(max_length=100 , blank=True , default=""  , null=True)
     practicing_since = models.CharField(max_length=100, blank=True , default="" )
     bio = models.TextField(max_length=1000, blank=True , default=""  , null=True)
-    mobile=  models.CharField(max_length=10 ,blank = True , unique=True , null=True)
+    # mobile=  models.CharField(max_length=10 ,blank = True , unique=True , null=True)
 
  
     # service_cities  = models.TextField(max_length = 250 ,default = '', blank=True)
@@ -139,7 +139,7 @@ class UserProfile(models.Model):
     state = models.CharField(max_length=30   , default = '', blank=True)
     pincode = models.CharField(max_length=10 , default="", blank=True)
     address = models.TextField(max_length=100 , default="", blank=True)
-    mobile=  models.CharField(max_length=10 ,blank = True , unique=True , null=True)
+    # mobile=  models.CharField(max_length=10 ,blank = True , unique=True , null=True)
 
     def __str__(self):
         return  self.user.email

@@ -129,40 +129,45 @@ def edit_profile(request, id):
     form2 = ProfileForm(request.POST or None,  instance=profile_model)
     form3 = CaseForm()
     form4 = EducationForm()
+   
     
     if request.method == 'POST' :
+      
+        form2 = ProfileForm(request.POST or None,  instance=profile_model)
 
-        
+        print(form2.is_valid())
+        # print(form2.errors)
+        print(request.POST.get('value'))
         if request.POST.get('delete')!=None:
-            
+            print('aaa')
             value = request.POST.get('delete').split(',')
             delete_advo_data( profile_model , value[0] ,value[1])
         form3 = CaseForm(request.POST)
         form4 = EducationForm(request.POST)
         
         if form3.is_valid():
-            
+            print('sd')
             form3.save(commit=False).user = request.user
             form3.save()
 
         if form4.is_valid():
-
+            print('s')
             form4.save(commit=False).user = request.user
             form4.save()
 
-        if form2.is_valid():  
+        if form2.is_valid() :  
             ajax_value = ""
             
-            
             if request.POST.get('check') == None:
-                
+
                 form2.save()
             elif request.POST.get('check') !=None:
-                
+
                 if request.POST.get('check') =='add_courts':
-                 
+                    print('court')
+
                     ajax_value =  request.POST.get('value')
-                  
+                   
                     value = edit_profile_removeCopy(request.user , ajax_value , 'courts')
                     if value:
                         profile_model.visiting_courts.append(ajax_value)
@@ -173,7 +178,8 @@ def edit_profile(request, id):
                     return JsonResponse(response)
 
                 if request.POST.get('check')  == 'add_law':
-                   
+                    print('law')
+
                     ajax_value =  request.POST.get('value')
 
                  
