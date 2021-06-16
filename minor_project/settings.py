@@ -13,7 +13,9 @@ from typing import Sequence
 from django.contrib.messages import constants as messages
 import os
 
-
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -55,6 +57,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'django_social_share',
+    'cloudinary'
 
  
 ]
@@ -153,6 +156,11 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+cloudinary.config(
+    cloud_name = "dkmbte5me",
+    api_key = "249959458295748",
+    api_secret = "eyT_Lf9JM-7qomFstiFAssy9GhA"
+)
 # message framework django
 
 MESSAGE_TAGS = {

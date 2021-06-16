@@ -13,7 +13,7 @@ from django.utils.translation import deactivate, ugettext_lazy as _
 from .manager import UserManager
 from django.utils.timezone import now
 from vkeel.pythonData import choice
-
+from cloudinary.models import CloudinaryField
 # choice = (
  
 #     ("Property Law", "Property Law"), 
@@ -26,7 +26,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     is_advocate = models.BooleanField(default=False)
     is_user = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='userimage/', blank=True , null = True , default  = "user.png" )
+    image =CloudinaryField("image" )
     email = models.EmailField(_('email address'), unique=True)
     name = models.CharField(_('name'), max_length=30, blank=True)
     city = models.CharField(max_length = 30  , blank = True , null=True)
