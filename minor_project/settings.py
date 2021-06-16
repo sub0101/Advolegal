@@ -14,7 +14,9 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+import cloudinary 
+import cloudinary.api
+import cloudinary.uploader
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -50,7 +52,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'django_social_share'
+    'django_social_share',
+    'cloudinary'
    
  
  
@@ -159,6 +162,11 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR , 'static'),
 )
 # message framework django
+cloudinary.config (
+        cloud_name  = "dkmbte5me",
+        api_key = "249959458295748",
+        api_secret = "eyT_Lf9JM-7qomFstiFAssy9GhA"
+)
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
