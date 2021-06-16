@@ -239,6 +239,7 @@ def edit_personal_profile_view(request, id):
     form1 = edit_user_form(data = request.POST  or None, instance=user_model)
     form2 = ProfileForm(request.POST or  None, instance=profile_model)
     if request.method == 'POST':
+        print(form2['mobile'].value())
         form1 = edit_user_form(data = request.POST, files = request.FILES  or None, instance=user_model)
         if form1.is_valid() and form2.is_valid():
             form1.save()
