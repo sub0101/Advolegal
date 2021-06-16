@@ -30,7 +30,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     name = models.CharField(_('name'), max_length=30, blank=True)
     city = models.CharField(max_length = 30  , blank = True , null=True)
-    # mobile=  models.CharField(max_length=10 ,blank = True , unique=True , null=True)
+    mobile=  models.CharField(max_length=10 ,blank = True , unique=True , null=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)

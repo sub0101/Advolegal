@@ -29,10 +29,11 @@ rate = [
 
 
 class AdvocateSignupForm(UserCreationForm):
+    mobile = forms.CharField(min_length=10 ,required=True )
 
     class Meta:
         model = User
-        fields = ('name',  'email',  'city', 'password1', 'password2')
+        fields = ('name',  'email',  'city', 'password1', 'password2'  , 'mobile')
 
     def __init__(self, *args, **kwargs):
         super(AdvocateSignupForm, self).__init__(*args, **kwargs)
@@ -41,6 +42,7 @@ class AdvocateSignupForm(UserCreationForm):
         self.fields['city'].widget.attrs.update( {'name': 'city', 'id': 'city', ' class': 'form-control1 signup_input', 'placeholder': 'City'})
         self.fields['password1'].widget.attrs.update( {'name': 'password1', 'id': 'password1', 'class': 'form-control1 signup_input', 'placeholder': 'Password'}),
         self.fields['password2'].widget.attrs.update( {'name': 'password2', 'id': 'password2', 'class': 'form-control1 signup_input', 'placeholder': 'Confirm Password'})
+        self.fields['mobile'].widget.attrs.update( {'name': 'mobile', 'id': 'mobile', 'class': 'form-control1 signup_input', 'placeholder': 'Mobile'})
 
 
 class DateInput1(forms.DateInput):
@@ -54,10 +56,9 @@ class DateInput2(forms.DateInput):
 class ProfileForm(forms.ModelForm):
 
     gender = forms.ChoiceField( choices=gender, widget=forms.RadioSelect, required=False)
-    mobile = forms.CharField(min_length=10 ,required=False )
     class Meta:
         model = AdvocateProfile
-        fields = ('dob', 'gender',   'pincode', 'state', 'address', 'mobile','language_spoken', 'practicing_since',  'enrollment_number', 'bio')
+        fields = ('dob', 'gender',  'pincode', 'state', 'address', 'language_spoken', 'practicing_since',  'enrollment_number', 'bio')
         widgets = {
             'practicing_since': DateInput1(),
             'dob': DateInput2(),
@@ -74,7 +75,7 @@ class ProfileForm(forms.ModelForm):
         self.fields['language_spoken'].widget.attrs.update(   {'required': False, 'class': 'form-control1 '}),
         self.fields['practicing_since'].widget.attrs.update(   {'required': False, 'class': 'form-control1 '}),
         self.fields['enrollment_number'].widget.attrs.update(   {'required': False, 'class': 'form-control1 '}),
-        self.fields['mobile'].widget.attrs.update(   {'required': False, 'class': 'form-control1 '}),
+        # self.fields['mobile'].widget.attrs.update(   {'required': False, 'class': 'form-control1'}),
 
         self.fields['bio'].widget.attrs.update( {'required': False, 'class': 'form-control '}),
        
@@ -83,10 +84,11 @@ class edit_user_form(forms.ModelForm):
 
     email = forms.EmailField(disabled=True)
     image = forms.ImageField(widget=FileInput, required=False)
+    mobile = forms.CharField(min_length=10 ,required=False ,disabled = True )
 
     class Meta:
         model = User
-        fields = ('name', 'email', 'city','image')
+        fields = ('name', 'email', 'city','image' , 'mobile')
 
     def __init__(self, *args, **kwargs):
         super(edit_user_form, self).__init__(*args, **kwargs)
@@ -126,10 +128,11 @@ class CaseForm(forms.ModelForm):
 
 
 class UserSignupForm(UserCreationForm):
+    mobile = forms.CharField(min_length=10 ,required=True )
 
     class Meta:
         model = User
-        fields = ('name',  'email',  'city', 'password1', 'password2')
+        fields = ('name',  'email',  'city', 'password1', 'password2' , 'mobile')
 
     def __init__(self, *args, **kwargs):
         super(UserSignupForm, self).__init__(*args, **kwargs)
@@ -138,12 +141,13 @@ class UserSignupForm(UserCreationForm):
         self.fields['city'].widget.attrs.update( {'name': 'city', 'id': 'city', ' class': 'form-control1 signup_input', 'placeholder': 'City'})
         self.fields['password1'].widget.attrs.update( {'name': 'password1', 'id': 'password1', 'class': 'form-control1 signup_input', 'placeholder': 'Password'}),
         self.fields['password2'].widget.attrs.update( {'name': 'password2', 'id': 'password2', 'class': 'form-control1 signup_input', 'placeholder': 'Confirm Password'})
+        self.fields['mobile'].widget.attrs.update( {'name': 'mobile', 'id': 'mobile', 'class': 'form-control1 signup_input', 'placeholder': 'mobile'})
 
 
 class UserProfileform(forms.ModelForm):
 
     gender = forms.ChoiceField( choices=gender, widget=forms.RadioSelect, required=False)
-    mobile = forms.CharField(min_length=10 , required = False  )
+    mobile = forms.CharField(min_length=10 , required = False ,disabled = True  )
     class Meta:
         model = UserProfile
         fields = ['state', 'pincode', 'mobile','address', 'dob', 'gender' ]
