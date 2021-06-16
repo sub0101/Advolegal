@@ -29,7 +29,7 @@ sender = None
 reciever = None
 
 obj= None
-courts = ['Madras High Court' ,'High Court of Delhi' , 'HIGH COURT OF BOMBAY' , 'd']
+courts = ['Madras High Court' ,'High Court of Delhi' , 'HIGH COURT OF BOMBAY']
 sorted_advocates = []
 
 
@@ -175,6 +175,7 @@ def edit_profile(request, id):
                 if request.POST.get('check')  == 'add_law':
                    
                     ajax_value =  request.POST.get('value')
+
                  
                     value = edit_profile_removeCopy(request.user , ajax_value , 'law')
                     
@@ -540,7 +541,7 @@ def search_city(users , city):
 
 def sortLaw(users , law):
     users = AdvocateProfile.objects.all()
-
+    
     law_list = []
     for i in users:
        
@@ -552,6 +553,7 @@ def sortLaw(users , law):
     return law_list
 def search_advo( request ):
     if request.method == 'POST':
+        print('inside')
         name_list  = list(User.objects.filter(is_advocate = True).values())
         return  JsonResponse(name_list , safe= False)
    
@@ -623,20 +625,22 @@ def advo_search(request):
            gender_list =  sortGender(User.objects.all() , gender )
            advocate = gender_list
     
-        elif city != None :
+        elif city != None and law =='all' :
             print('city')
             print(request.POST.get('city')
 )
             city_list = search_city(User.objects.all() , city)
             advocate = city_list
-        elif name != 'None':
-            print('search')
-            name_list = search_name(User.objects.filter(is_advocate = True) , name)
-            advocate = name_list
-        elif law!= 'all': 
+       
+        elif law != 'all' and name == None : 
             print('law')
             law_list = sortLaw(User.objects.all() , law)
             advocate = law_list
+            
+        elif name != 'None' or law == 'all':
+            print('search')
+            name_list = search_name(User.objects.filter(is_advocate = True) , name)
+            advocate = name_list
         
     
    

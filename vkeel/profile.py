@@ -11,19 +11,11 @@ from .models import *
 from django.core.validators import RegexValidator
 from django.core.exceptions import ObjectDoesNotExist
 import os
+from .pythonData import choice
 
 
 
-law_choice = (
-    ("1", "---------"), 
-    ("2", "a"), 
-    ("3", "b"), 
-    ("4", "c"), 
-    ("5", "d"), 
-    ("6", "e"), 
-    ("7", "f"), 
-    ("8", "g"), 
-)
+law_choice = choice
 gender= [
     ('male', 'male'),
     ('female'  ,'female')
