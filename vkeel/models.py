@@ -118,7 +118,7 @@ class InstantAdvice(models.Model):
     name = models.CharField(max_length=20 , default="")
     ammount = models.IntegerField(blank=True, default=0)
     created = models.DateTimeField(auto_now_add=True)
-    mobile = models.IntegerField(default=0)
+    mobile=  models.CharField(max_length=10 ,blank = True , null=True )
     advocate=models.EmailField(blank=False)
     transaction_id = models.UUIDField(default=uuid.uuid4, unique=True, db_index=True)
 
