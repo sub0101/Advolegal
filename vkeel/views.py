@@ -680,7 +680,7 @@ def instantadvice(request , id):
             'INDUSTRY_TYPE_ID':'Retail',
             'WEBSITE':'WEBSTAGING',
             'CHANNEL_ID':'WEB',
-	        'CALLBACK_URL':'http://127.0.0.1:8000/handlerequest/', }
+	        'CALLBACK_URL':'https://advolegal.herokuapp.com/handlerequest/', }
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(param_dict ,'V38%h#PI3JNLXKGR')
         global sender
         sender = obj
