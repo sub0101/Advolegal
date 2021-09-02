@@ -100,7 +100,7 @@
                     {% csrf_token %}
                     <input type="text " id="name" placeholder="Enter your name " name='name' required>
                     <input type="email " placeholder="Enter Email Address " id="email" name='email' required>
-                    <input type="text " id="mobile" placeholder="Enter your Mobile " name='mobile' required>
+                    <input type="text " id="mobile" placeholder="Enter your Mobile " name='mobile' minlength="10" required>
                     <textarea rows="8 " placeholder="Message " name='query' id="query" required></textarea>
                     <button type="submit " class="hero-btn red-btn ">Send Message</button>
                 </form>

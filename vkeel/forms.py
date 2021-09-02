@@ -188,3 +188,8 @@ class AdviceForm(forms.ModelForm):
     class Meta:
         model = InstantAdvice
         fields = ['name','mobile','advocate']
+
+    def __init__(self, *args, **kwargs):
+        super(AdviceForm, self).__init__(*args, **kwargs)
+        self.fields['advocate'].widget.attrs.update({ 'required': True,'placeholder':'Title'}),
+        
