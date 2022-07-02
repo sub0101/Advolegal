@@ -710,13 +710,13 @@ def handlerequest(request):
             obj.save()
             subject = 'Your Transaction Has been done '
             message= 'Hello {name} your query has been successfully submited . Advocate contact you as soon as possible if there is no call from advocate And if You feel any Wrong then please Contact Us We Will Do Our Best. Thank You \n Your Transaction Id: {transaction}'.format(name = sender.name , transaction = obj.transaction_id)
-            send_mail(subject,message ,'advolegal0@gmail.com', [sender.user.email])
+            # send_mail(subject,message ,'advolegal0@gmail.com', [sender.user.email])
             message = 'Hello Mr./Ms . {name} New User Want to  Contact You Please Call him as soon as possible user is waiting for you. We will send money to your account shortly. Thank You'.format(name = reciever.email  )
             detail = '\n Name: {name} ,\n  email: {email} ,\n  contact : {contact}'.format(name = sender.name , email = sender.advocate , contact = sender.mobile)
             message = message + " "+ detail
             subject='ADvolegal New User Connection'
             
-            send_mail( subject, message ,'advolegal0@gmail.com', [sender.advocate])
+            # send_mail( subject, message ,'advolegal0@gmail.com', [sender.advocate])
             verify = 'false'
         else:
             print('failed')
