@@ -30,7 +30,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 AUTH_USER_MODEL = 'vkeel.User'
 
-
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend'
@@ -40,7 +39,7 @@ AUTHENTICATION_BACKENDS = [
 
 INSTALLED_APPS = [
     'django.contrib.sites',
-    'vkeel.apps.VkeelConfig',
+    # 'vkeel.apps.VkeelConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,7 +52,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'django_social_share',
-    'cloudinary'
+    'cloudinary',
+    'vkeel'
    
  
  
@@ -208,3 +208,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+
+
+APPEND_SLASH = True

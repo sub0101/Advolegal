@@ -55,7 +55,7 @@ def index(request):
 
 
 
-def login_view(request):
+def login(request):
 
     if request.method == 'POST':
 
